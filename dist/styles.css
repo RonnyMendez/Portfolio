@@ -20,6 +20,18 @@
 	scrollbar-gutter: stable;
 }
 
+
+
+.about-me img {
+  transition: transform 0.5s ease;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.about-me img:hover {
+  transform: scale(1.05);
+}
+
 /* style webkit browsers (chrome, edge) scrollbar */
 ::-webkit-scrollbar {
 	width: 8px;
@@ -465,18 +477,101 @@ small {
 
 /*******************
 		MY SKILLS SECTION
-*************************/
+********************/
+
 .my-skills {
 	margin-block-start: var(--section-mt);
 	padding: 4rem 1rem;
 }
 
-.my-skills ul {
-	padding-block-start: 5rem;
+.my-skills ul.skills-list {
+	margin-top: 2rem;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 3.2rem 1rem;
+	list-style: none;
+	padding: 0;
 }
+
+/* Skill card */
+.skills-list li {
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	border: 2px solid hsl(220, 100%, 65%);
+	padding: 1.25rem 1rem;
+	border-radius: 12px;
+	transition: all 0.3s ease;
+	background-color: rgba(0, 0, 0, 0.1);
+	font-weight: 500;
+	box-shadow: 0 0 0 transparent;
+	color: white;
+	min-height: 64px;
+	z-index: 1;
+	cursor: pointer;
+}
+
+/* Hover left-to-right background effect */
+.skills-list li::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-color: hsl(220, 100%, 65%);
+	transform: scaleX(0);
+	transform-origin: left center;
+	transition: transform 0.4s ease-in-out;
+	z-index: -1;
+	border-radius: 12px;
+}
+
+/* Hover visual feedback */
+.skills-list li:hover {
+	color: hsl(0, 0%, 9%);
+	border: none;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.skills-list li:hover::before {
+	transform: scaleX(1);
+}
+
+/* Icon container */
+.skills-list .icon {
+	width: 32px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5rem;
+	background-color: transparent;
+	transition: transform 0.3s ease;
+}
+
+/* Icon IMG base: blanco */
+.skills-list .icon img {
+	width: 32px;
+	height: 32px;
+	object-fit: contain;
+	filter: brightness(0) invert(1);
+	transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* Icon hover: oscurecido */
+.skills-list li:hover .icon img {
+	filter: brightness(0.9) invert(0);
+	transform: scale(1.1);
+}
+
+/* Iconos <i> también se oscurecen */
+.skills-list li:hover .icon i {
+	color: hsl(0, 0%, 0%);
+	transform: scale(1.1);
+}
+ 
+
 
 /*******************
 		PROJECTS SECTION
